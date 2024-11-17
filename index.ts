@@ -1,1 +1,1 @@
-console.log('hoi');
+import dotenv from 'dotenv'
