@@ -58,7 +58,7 @@
               <td><%= val.standard %></td>
               <td><%= val.medium %></td>
               <td>
-                <button class="btn btn-primary" onclick="window.location.href = '/editStudent'">Edit</button>
+                <button class="btn btn-primary" onclick="window.location.href = '/editStudent?_id=<%=val._id%>'">Edit</button>
                 <button class="btn btn-danger" onclick="window.location.href = '/deleteStudent?_id=<%=val._id%>'">Delete</button>
               </td>
             </tr>

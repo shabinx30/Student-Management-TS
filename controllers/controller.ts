@@ -43,4 +43,36 @@ export class controllers {
             
         }
     }
+
+    async getEditStudent(req: Request, res: Response): Promise<void> {
+        try {
+            const studentData = await student.findOne({_id: req.query._id})
+
+            return res.render('update',{studentData})
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async editStudent(req: Request, res: Response): Promise<void> {
+        try {
+            const { name, place, standard, medium }: Details = req.body
+
+            await student.findOneAndUpdate(
+                {_id: req.body._id},
+                {
+                    $set:{
+                        name,
+                        place,
+                        standard,
+                        medium
+                    }
+                }
+            )
+
+            return res.redirect('/')
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
