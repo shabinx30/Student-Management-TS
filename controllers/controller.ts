@@ -33,4 +33,14 @@ export class controllers {
             
         }
     }
+
+    async deleteStudent(req: Request, res: Response): Promise<void> {
+        try {
+            await student.findByIdAndDelete({_id: req.query._id})
+            return res.redirect('/')
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
 }

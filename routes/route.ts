@@ -7,5 +7,6 @@ const ctrl = new controllers
 
 router.get('/',ctrl.home)
 router.post('/addStudent',ctrl.addStudent)
+router.get('/deleteStudent',ctrl.deleteStudent)
 
 export default router
