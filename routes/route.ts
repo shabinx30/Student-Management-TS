@@ -5,6 +5,7 @@ import {controllers} from '../controllers/controller'
 
 const ctrl = new controllers
 
-router.get('/',ctrl.Home)
+router.get('/',ctrl.home)
+router.post('/addStudent',ctrl.addStudent)
 
 export default router

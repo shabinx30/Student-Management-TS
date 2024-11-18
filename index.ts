@@ -18,10 +18,9 @@ app.use('/', Studentroute)
 
 
 //mongodb connection
-mongoose.connect(process.env.MONGODB_URL as string).then(() => {
-    console.log("database connected");
-})
-.catch((err)=> console.log(err))
+mongoose.connect(process.env.MONGODB_URL as string)
+    .then(() => console.log("database connected"))
+    .catch((err) => console.log(err))
 
 app.listen(process.env.PORT || 5000, () => {
     console.log(`server is started running on ${process.env.PORT || 5000}`);
