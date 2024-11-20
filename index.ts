@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import express from 'express'
 import Studentroute from './routes/route'
-import mongoose from 'mongoose'
+import mongo from './mongoConfig/mongo'
 
 const app = express()
 dotenv.config()
@@ -18,9 +18,7 @@ app.use('/', Studentroute)
 
 
 //mongodb connection
-mongoose.connect(process.env.MONGODB_URL as string)
-    .then(() => console.log("database connected"))
-    .catch((err) => console.log(err))
+mongo()
 
 app.listen(process.env.PORT || 5000, () => {
     console.log(`server is started running on ${process.env.PORT || 5000}`);
