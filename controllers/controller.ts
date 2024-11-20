@@ -78,7 +78,6 @@ export class controllers {
     async search(req: Request, res: Response): Promise<void> {
         try {
             let SearchData = req.query.str
-            // SearchData = SearchData.toUpperCase()
             const StudentData = await student.find({ name: { "$regex": SearchData } })
             return res.render('students', { StudentData })
         } catch (error) {
