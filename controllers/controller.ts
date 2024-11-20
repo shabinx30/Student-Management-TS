@@ -20,35 +20,35 @@ export class controllers {
             const { name, place, standard, medium }: Details = req.body
 
             const insertStudent = new student({
-                name,
+                name: name.toUpperCase(),
                 place,
                 standard,
-                medium
+                medium: medium.toUpperCase()
             })
 
             await insertStudent.save()
             return res.redirect('/')
         } catch (error) {
             console.log(error);
-            
+
         }
     }
 
     async deleteStudent(req: Request, res: Response): Promise<void> {
         try {
-            await student.findByIdAndDelete({_id: req.query._id})
+            await student.findByIdAndDelete({ _id: req.query._id })
             return res.redirect('/')
         } catch (error) {
             console.log(error);
-            
+
         }
     }
 
     async getEditStudent(req: Request, res: Response): Promise<void> {
         try {
-            const studentData = await student.findOne({_id: req.query._id})
+            const studentData = await student.findOne({ _id: req.query._id })
 
-            return res.render('update',{studentData})
+            return res.render('update', { studentData })
         } catch (error) {
             console.log(error);
         }
@@ -59,9 +59,9 @@ export class controllers {
             const { name, place, standard, medium }: Details = req.body
 
             await student.findOneAndUpdate(
-                {_id: req.body._id},
+                { _id: req.body._id },
                 {
-                    $set:{
+                    $set: {
                         name,
                         place,
                         standard,
@@ -71,6 +71,16 @@ export class controllers {
             )
 
             return res.redirect('/')
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async search(req: Request, res: Response): Promise<void> {
+        try {
+            let SearchData = req.query.str
+            // SearchData = SearchData.toUpperCase()
+            const StudentData = await student.find({ name: { "$regex": SearchData } })
+            return res.render('students', { StudentData })
         } catch (error) {
             console.log(error);
         }
